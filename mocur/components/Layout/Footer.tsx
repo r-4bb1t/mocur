@@ -6,9 +6,9 @@ export default function Footer() {
           src="/white.png"
           className="mask-hexagon-2 w-[550px] [mask-size:550px] mt-6"
         />
-        <div className="absolute inset-x-0 pt-20 h-80 w-full flex flex-col items-center justify-center gap-8 z-10">
+        <div className="absolute inset-x-0 pt-16 h-80 w-full flex flex-col items-center justify-center gap-8 z-10 overflow-y-hidden">
           <div className="flex flex-col items-center">
-            <img src="/logo.svg" />
+            <img src="/logo.svg" className="mb-4" />
             <p className="font-bold">2023 SKYCC: Pairing 해커톤 참가작</p>
             <p>Copyright © 호랑개발단 2023 - All right reserved</p>
           </div>
@@ -43,7 +43,7 @@ export default function Footer() {
                 <div className="w-12 h-12 mask mask-hexagon">
                   <a
                     className="btn p-0 border-none bg-[#e3e3e3]"
-                    href="https://github.com/Talkwarrior"
+                    href="https://github.com/ege114366"
                     target="_blank"
                   >
                     <img src="/avatars/gaeun.svg" className="object-cover" />
@@ -54,7 +54,7 @@ export default function Footer() {
                 <div className="w-12 h-12 mask mask-hexagon">
                   <a
                     className="btn p-0 border-none bg-[#e3e3e3]"
-                    href="https://github.com/Talkwarrior"
+                    href="https://github.com/ChoChoMinSeo"
                     target="_blank"
                   >
                     <img src="/avatars/minseo.svg" className="object-cover" />

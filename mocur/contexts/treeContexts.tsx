@@ -81,10 +81,6 @@ const TreeContextProvider = ({ children }: { children: ReactNode }) => {
     },
   ]);
 
-  useEffect(() => {
-    console.log(lists);
-  }, [lists]);
-
   return (
     <TreeContext.Provider
       value={{

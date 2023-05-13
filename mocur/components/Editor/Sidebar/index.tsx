@@ -12,6 +12,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { BeatLoader } from "react-spinners";
 import { Edge, Node } from "reactflow";
+import { useSession } from "next-auth/react";
+import { EmptyStarIcon, ForkIcon } from "@/components/Icons";
 
 const Item = ({ item, deg }: { item: ListItem; deg: number }) => {
   const { lists } = useTreeContext();
@@ -50,13 +52,14 @@ const setReq = (
   nodes: Node<any, string | undefined>[],
   edges: Edge<any>[]
 ) => {
+  const { data: session } = useSession();
   return {
     data: {
       title: title,
       description: description,
-      owner: "userId",
+      owner: session?.user?.email,
       public: isPublic,
-      rating: 1, // integer: 1~10
+      rating: rating, // integer: 1~10
       nodes: nodes.map((node) => {
         return {
           index: parseInt(node.id), // 1부터 순차적으로 증가
@@ -179,6 +182,12 @@ export default function Sidebar({
         >
           {loading ? <BeatLoader color="white" /> : "커리큘럼 등록하기"}
         </button>
+      )}
+      {!edit && (
+        <div className="w-full flex gap-2 items-center">
+          <EmptyStarIcon />
+          <ForkIcon />
+        </div>
       )}
     </div>
   );

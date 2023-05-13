@@ -23,6 +23,7 @@
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
     "framer-motion": "^10.12.10",
+    "https": "^1.0.0",
     "nanoid": "^4.0.2",
     "next": "13.4.2",
     "next-auth": "^4.22.1",

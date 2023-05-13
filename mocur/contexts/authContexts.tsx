@@ -1,14 +1,21 @@
-import { createContext, FC, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext } from "react";
 import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
-interface AuthContextProps {}
+interface AuthContextProps {
+  session: Session | null;
+}
 
-export const AuthContext = createContext<AuthContextProps>({});
+export const AuthContext = createContext<AuthContextProps>({
+  session: null,
+});
 
 const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const { data: session } = useSession();
 
-  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ session }}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthContextProvider;

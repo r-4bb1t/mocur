@@ -31,7 +31,7 @@ module.exports = {
       },
       backgroundImage: {
         background:
-          "radial-gradient(54.97% 173.74% at 38.39% 61.76%, #C9D6FF 0%, #C9D6FF 100%)",
+          "radial-gradient(54.97% 173.74% at 38.39% 61.76%, rgba(172, 182, 229, 0.6) 0%, rgba(116, 235, 213, 0.6) 100%)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",

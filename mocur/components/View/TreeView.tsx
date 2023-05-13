@@ -70,9 +70,6 @@ export default function TreeView({
   nodes: Node<any, string | undefined>[];
   edges: Edge<any>[] | undefined;
 }) {
-  console.log(JSON.stringify(nodes));
-  console.log(JSON.stringify(edges));
-
   return (
     <div className="w-full shrink-0">
       <ReactFlowProvider>

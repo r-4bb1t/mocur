@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import axios, { AxiosError, isAxiosError } from "axios";
 import Error from "next/error";
 import TreeView from "@/components/View/TreeView";
+import https from "https";
 
 const facNodes = (nodes: GetTreeResponseType["nodes"]) => {
   return nodes.map((node) => {
@@ -43,9 +44,13 @@ export default function View() {
   const router = useRouter();
   const getData = useCallback(async () => {
     try {
+      const agent = new https.Agent({
+        rejectUnauthorized: false,
+      });
       const res = (
         await axios.get(
-          `${process.env.NEXT_PUBLIC_API_HOST}/trees/${router.query.id}`
+          `${process.env.NEXT_PUBLIC_API_HOST}/trees/${router.query.id}`,
+          { httpsAgent: agent }
         )
       ).data as GetTreeResponseType;
       setData(res);
