@@ -39,13 +39,14 @@ export default function Home() {
             <button
               key={i}
               className="rounded-full py-2 px-4 shadow-shadow text-sm font-semibold bg-white hover:-translate-y-1 transition-transform"
+              onClick={() => setSearch(chip)}
             >
               {chip}
             </button>
           ))}
         </div>
         <div className="w-4/5 max-w-7xl mt-8 mb-12">
-          <CurLists />
+          <CurLists search={search} />
         </div>
       </main>
     </Layout>

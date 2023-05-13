@@ -60,8 +60,17 @@ const CurItem = ({ data }: { data: GetTreeResponseType }) => {
   );
 };
 
-export default function CurLists() {
+export default function CurLists({ search }: { search: string }) {
   const [data, setData] = useState<GetTreeResponseType[]>([]);
+  const [filtered, setFiltered] = useState<GetTreeResponseType[]>([]);
+
+  useEffect(() => {
+    setFiltered(
+      data.filter(
+        (d) => d.title.includes(search) || d.description.includes(search)
+      )
+    );
+  }, [search]);
 
   const getData = useCallback(async () => {
     try {
@@ -69,6 +78,7 @@ export default function CurLists() {
         await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/trees/all`)
       ).data;
       setData(res);
+      setFiltered(res);
     } catch (e) {}
   }, []);
 
@@ -78,7 +88,7 @@ export default function CurLists() {
 
   return (
     <div className="w-full grid grid-cols-2 gap-4">
-      {data.map((item, i) => (
+      {filtered.map((item, i) => (
         <CurItem
           key={i}
           data={{
