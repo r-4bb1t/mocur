@@ -1165,6 +1165,11 @@ dompurify@^2.3.3:
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.4.5.tgz#0e89a27601f0bad978f9a924e7a05d5d2cccdd87"
   integrity sha512-jggCCd+8Iqp4Tsz0nIvpcb22InKEBrGz5dw3EQJMs8HPJDsKbFIO3STYtAvCfDx26Muevn1MHVI0XxjgFfmiSA==
 
+edge-csrf@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/edge-csrf/-/edge-csrf-1.0.3.tgz#4e6894d91fe24bec9425ea90db467114d3500784"
+  integrity sha512-miYuAv+tLaKw+niVD8Os5zQcMOB4Sdc748DKz3w6VIkou+WU2GHCUeL3fn9NyNeHAfNsUrOTB9Y/zlBVmnSTEQ==
+
 electron-to-chromium@^1.4.284:
   version "1.4.394"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.394.tgz#989abe104a40366755648876cde2cdeda9f31133"

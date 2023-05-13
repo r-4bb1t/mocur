@@ -94,7 +94,7 @@ export default function Sidebar({
     try {
       const res = (
         await axios.post(
-          `${process.env.NEXT_PUBLIC_API_HOST}/trees`,
+          `${process.env.NEXT_PUBLIC_API_HOST}/trees/`,
           setReq(title, description, isPublic, rating, nodes, edges),
           {
             headers: {

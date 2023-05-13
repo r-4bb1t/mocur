@@ -19,6 +19,7 @@
     "axios": "^1.4.0",
     "classcat": "^5.0.4",
     "daisyui": "^2.51.6",
+    "edge-csrf": "^1.0.3",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.2",
     "framer-motion": "^10.12.10",
