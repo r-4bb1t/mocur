@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="w-full h-80 flex justify-center overflow-y-hidden">
         <img
           src="/white.png"
-          className="mask-hexagon-2 w-[550px] [mask-size:550px] mt-6"
+          className="mask-hexagon-2 w-[500px] [mask-size:500px] mt-8"
         />
         <div className="absolute inset-x-0 pt-16 h-80 w-full flex flex-col items-center justify-center gap-8 z-10 overflow-y-hidden">
           <div className="flex flex-col items-center">
