@@ -25,36 +25,7 @@ const Flow = ({
     <div className="wrapper w-full">
       <ReactFlow
         nodes={nodes}
-        edges={[
-          {
-            id: "1",
-            source: "1",
-            target: "2",
-            animated: true,
-            style: { stroke: "#000" },
-          },
-          {
-            id: "2",
-            source: "1",
-            target: "2",
-            animated: true,
-            style: { stroke: "#000" },
-          },
-          {
-            id: "3",
-            source: "1",
-            target: "3",
-            animated: true,
-            style: { stroke: "#000" },
-          },
-          {
-            id: "4",
-            source: "2",
-            target: "4",
-            animated: true,
-            style: { stroke: "#000" },
-          },
-        ]}
+        edges={edges}
         nodeTypes={nodeTypes}
         fitView
         className="!overflow-visible"

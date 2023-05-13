@@ -180,7 +180,7 @@ export default function Sidebar({
         <button
           className="py-2 px-3 text-center rounded hov bg-main text-white gap-2 font-bold w-full disabled:bg-black-500"
           onClick={() => handleSubmit()}
-          disabled={loading}
+          disabled={loading || title.length === 0 || description.length === 0}
         >
           {loading ? <BeatLoader color="white" /> : "커리큘럼 등록하기"}
         </button>
