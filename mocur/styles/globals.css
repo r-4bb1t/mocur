@@ -40,3 +40,13 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.react-flow .react-flow__edge path,
+.react-flow__connectionline path {
+  stroke-width: 2;
+}
+
+.wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
