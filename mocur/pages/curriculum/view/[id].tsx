@@ -8,7 +8,7 @@ import TreeView from "@/components/View/TreeView";
 import https from "https";
 
 const facNodes = (nodes: GetTreeResponseType["nodes"]) => {
-  return nodes.map((node) => {
+  return nodes!.map((node) => {
     return {
       id: `${node.index}`,
       position: {
@@ -26,7 +26,7 @@ const facNodes = (nodes: GetTreeResponseType["nodes"]) => {
 };
 
 const facEdges = (edges: GetTreeResponseType["edges"]) => {
-  return edges.map((edge) => {
+  return edges!.map((edge) => {
     return {
       id: `${edge.id}`,
       source: `${edge.source}`,

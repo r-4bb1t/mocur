@@ -1,11 +1,12 @@
 interface GetTreeResponseType {
   id: string;
   owner: string;
-  public: boolean;
+  public?: boolean;
   rating: number;
   title: string;
   description: string;
-  nodes: {
+
+  nodes?: {
     index: string;
     title: string;
     checklist: ChecklistType[];
@@ -13,8 +14,7 @@ interface GetTreeResponseType {
     loc_x: number;
     loc_y: number;
   }[];
-
-  edges: {
+  edges?: {
     id: string;
     source: string;
     target: string;
