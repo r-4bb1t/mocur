@@ -147,7 +147,9 @@ export default function Sidebar({
           onChange={(e) => setDescription(e.target.value)}
         />
       ) : (
-        <div className="mt-2 text-sm w-full input-sm">{data?.description}</div>
+        <div className="mt-2 text-sm h-full w-full input-sm">
+          {data?.description}
+        </div>
       )}
       {/* <ul className="mt-2">
         {lists.map(
@@ -184,9 +186,17 @@ export default function Sidebar({
         </button>
       )}
       {!edit && (
-        <div className="w-full flex gap-2 items-center">
-          <EmptyStarIcon />
-          <ForkIcon />
+        <div className="w-full flex gap-4 items-center px-3 justify-end">
+          <div className="tooltip tooltip-top" data-tip="찜하기">
+            <button className="hover:scale-90 transition-all">
+              <EmptyStarIcon className="w-8 h-8" />
+            </button>
+          </div>
+          <div className="tooltip tooltip-top" data-tip="포크하기">
+            <button className="hover:scale-90 transition-all">
+              <ForkIcon className="w-8 h-8" />
+            </button>
+          </div>
         </div>
       )}
     </div>

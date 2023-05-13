@@ -14,10 +14,7 @@ export default function Footer() {
           </div>
           <div>
             <div className="grid grid-flow-col gap-4">
-              <div
-                className="tooltip tooltip-bottom"
-                data-tip="웹 프론트엔드 - 현채"
-              >
+              <div className="tooltip" data-tip="웹 프론트엔드 - 현채">
                 <div className="w-12 h-12 mask mask-hexagon">
                   <a
                     className="btn p-0 border-none bg-[#e3e3e3]"
@@ -39,7 +36,7 @@ export default function Footer() {
                   </a>
                 </div>
               </div>
-              <div className="tooltip tooltip-bottom" data-tip="기타 - 가은">
+              <div className="tooltip" data-tip="기획 - 가은">
                 <div className="w-12 h-12 mask mask-hexagon">
                   <a
                     className="btn p-0 border-none bg-[#e3e3e3]"
