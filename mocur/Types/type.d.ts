@@ -1,12 +1,28 @@
-interface NodeType {
+interface NodeDataType {
   index: string;
   title: string;
   content: string;
-  progress_individual: boolean;
-  loc_x: number;
-  loc_y: number;
-  size_x: number;
-  size_y: number;
-  checklists: string[];
-  is_main_branch: boolean;
+  checklists: ChecklistType[];
+}
+
+interface FlowNodeType {
+  id: string;
+  position: {
+    x: number;
+    y: number;
+  };
+  type: string;
+  data: NodeDataType;
+}
+
+interface ChecklistType {
+  content: string;
+  id: string;
+}
+
+interface ListItem {
+  index: string;
+  children: string[];
+  title: string;
+  parents: string[];
 }

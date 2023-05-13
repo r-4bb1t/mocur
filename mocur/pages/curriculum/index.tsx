@@ -18,20 +18,7 @@ export default function Home() {
   const [search, setSearch] = useState<string>("");
   return (
     <Layout>
-      <main className="flex flex-col items-center pt-16">
-        <div className="w-full py-48 -mb-20 flex justify-center bg-[url(/hero.svg)] bg-no-repeat bg-right bg-contain">
-          <div className="w-2/3">
-            <h1 className="text-5xl font-black">모두의 커리큘럼, 모커!</h1>
-            <p className="mt-6 mb-3 text-lg">
-              함께 공부하고, 함께 성장하는 모두의 지식 가이드
-            </p>
-            <Link href={"/curriculum/editor"}>
-              <button className="btn btn-md btn-ghost bg-white">
-                커리큘럼 만들기
-              </button>
-            </Link>
-          </div>
-        </div>
+      <main className="flex flex-col items-center pt-48">
         <div className="font-black text-2xl mb-4">커리큘럼 찾기</div>
         <Input search={search} setSearch={setSearch} />
         <div className="flex mt-2 py-2 gap-2">

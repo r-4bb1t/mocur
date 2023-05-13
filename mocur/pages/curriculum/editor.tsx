@@ -1,37 +1,40 @@
 import Editior from "@/components/Editor";
-import Drawer from "@/components/Editor/Drawer";
 import Sidebar from "@/components/Editor/Sidebar";
 import Layout from "@/components/Layout";
-import { useDrawerContext } from "@/contexts/drawerContexts";
+import { useTreeContext } from "@/contexts/treeContexts";
 import { useState } from "react";
+import dynamic from "next/dynamic";
+import cc from "classcat";
+import { AnimatePresence, motion } from "framer-motion";
+
+const Modal = dynamic(() => import("@/components/Editor/Modal"), {
+  ssr: false,
+});
 
 export default function Home() {
-  const { openedNodeIndex, setOpenedNodeIndex } = useDrawerContext();
+  const { openedNodeIndex, setOpenedNodeIndex } = useTreeContext();
   return (
     <Layout>
-      <main className="w-full h-screen flex">
-        <div className="drawer drawer-end">
-          <input
-            id="isDrawerOpened"
-            type="checkbox"
-            className="drawer-toggle"
-            checked={openedNodeIndex.length > 0}
-            onChange={(v) => !v.target.checked && setOpenedNodeIndex("")}
-          />
-          <div className="drawer-content pt-32 flex">
-            <Sidebar />
-            <Editior />
-          </div>
-          <div className="drawer-side">
-            <label
-              htmlFor="isDrawerOpened"
-              className="drawer-overlay ![--tw-bg-opacity:0.1]"
-            ></label>
-            <div className="menu p-4 w-1/3 bg-white text-base-content mt-32 rounded-tl-lg shadow-shadow">
-              <Drawer />
-            </div>
-          </div>
+      <main className="w-screen h-screen flex overflow-hidden">
+        <div className="absolute inset-0 pt-32 flex overflow-hidden">
+          <Sidebar />
+          <Editior />
         </div>
+        <AnimatePresence>
+          {openedNodeIndex && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="bg-black bg-opacity-25 fixed inset-0 z-50 flex items-center justify-center"
+              onClick={(e) => {
+                setOpenedNodeIndex("");
+              }}
+            >
+              <Modal />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
     </Layout>
   );

@@ -1,47 +1,45 @@
-import { useDrawerContext } from "@/contexts/drawerContexts";
+import { useTreeContext } from "@/contexts/treeContexts";
 import cc from "classcat";
 import React, { memo } from "react";
 import { Handle, Position } from "reactflow";
 import { AddIcon } from "../Icons";
 
-function CustomNode({ data }: { data: NodeType }) {
-  const { setOpenedNodeIndex } = useDrawerContext();
+function CustomNode({ data }: { data: NodeDataType }) {
+  const { setOpenedNodeIndex } = useTreeContext();
   return (
     <div
       className={cc([
-        "bg-white shadow-shadow flex flex-col px-6 py-8 gap-2 rounded z-50",
-        data.is_main_branch && "",
-        !data.is_main_branch && "bg-opacity-80",
+        "bg-white shadow-shadow flex flex-col gap-2 rounded z-50 w-[20rem]",
+        /*  data.is_main_branch && "px-6 py-4",
+        !data.is_main_branch && "px-4 py-2 bg-opacity-80", */
       ])}
       onClick={() => setOpenedNodeIndex(data.index)}
     >
       <div
         className={cc([
           "font-bold",
-          data.is_main_branch && "text-2xl",
-          !data.is_main_branch && "text-lg",
+          /*   data.is_main_branch && "text-2xl",
+          !data.is_main_branch && "text-lg", */
         ])}
       >
-        {data.index}
         {data.title}
       </div>
       <div
         className={cc([
           "line-clamp-3",
-          data.is_main_branch && "text-base",
-          !data.is_main_branch && "text-sm",
+          /*    data.is_main_branch && "text-base",
+          !data.is_main_branch && "text-sm", */
         ])}
-      >
-        {data.content}
-      </div>
+        dangerouslySetInnerHTML={{ __html: data.content }}
+      ></div>
       <ul>
         {data.checklists.map((checklist, i) => (
           <li
             key={i}
             className={cc([
               "flex",
-              data.is_main_branch && "text-lg",
-              !data.is_main_branch && "text-base",
+              /*  data.is_main_branch && "text-lg",
+              !data.is_main_branch && "text-base", */
             ])}
           >
             <input
@@ -50,7 +48,7 @@ function CustomNode({ data }: { data: NodeType }) {
               readOnly
               className="checkbox checkbox-sm mt-0.5 mr-1"
             />
-            {checklist}
+            {checklist.content}
           </li>
         ))}
       </ul>

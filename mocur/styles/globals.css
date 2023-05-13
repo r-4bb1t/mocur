@@ -4,6 +4,12 @@
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
 
+@layer components {
+  .hov {
+    @apply hover:bg-opacity-80 transition-all;
+  }
+}
+
 * {
   font-family: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
@@ -12,10 +18,9 @@
   box-sizing: border-box;
 }
 
-@layer components {
-  .hov {
-    @apply hover:bg-opacity-80 transition-all;
-  }
+html,
+body {
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -44,6 +49,12 @@
 .react-flow .react-flow__edge path,
 .react-flow__connectionline path {
   stroke-width: 2;
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:focus .react-flow__edge-path,
+.react-flow__edge:focus-visible .react-flow__edge-path {
+  stroke: #11b969 !important;
 }
 
 .wrapper {
