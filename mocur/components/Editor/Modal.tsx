@@ -17,7 +17,6 @@ export default function Drawer() {
   const titleRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    console.log(openedNodeIndex);
     const filtered = nodes.filter((node) => node.id === openedNodeIndex);
     if (filtered.length > 0) {
       setData(filtered[0].data);

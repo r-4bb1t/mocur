@@ -32,7 +32,7 @@ export default function Header() {
           </li>
         </ul>
         {session ? (
-          <div className="rounded-full w-8 h-8 bg-white overflow-hidden">
+          <div className="rounded-full w-10 h-10 shadow-shadow bg-white overflow-hidden">
             {" "}
             <img
               className="object-cover"

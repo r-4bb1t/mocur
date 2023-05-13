@@ -113,10 +113,10 @@ export default function Sidebar({
   };
 
   return (
-    <div className="w-80 bg-white h-full rounded-tr-lg shadow-shadow py-8 px-4 shrink-0 z-10">
+    <div className="w-96 bg-white h-full rounded-tr-lg shadow-shadow py-8 px-6 shrink-0 z-10 flex flex-col">
       {edit ? (
         <input
-          className="font-bold text-xl input input-bordered w-full input-sm"
+          className="font-bold text-xl input input-bordered w-full input-sm shrink-0"
           placeholder="커리큘럼 제목"
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -142,7 +142,7 @@ export default function Sidebar({
       )}
       {edit ? (
         <textarea
-          className="mt-2 h-32 text-sm textarea textarea-bordered w-full input-sm resize-none"
+          className="mt-2 h-full text-sm textarea textarea-bordered w-full input-sm resize-none"
           placeholder="커리큘럼 설명"
           onChange={(e) => setDescription(e.target.value)}
         />
