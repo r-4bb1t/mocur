@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        shadow: "0px 4px 16px 0px rgba(0,0,0,0.12)",
+      },
       colors: {
         "yellow-400": "#ffd600",
         "main-darker": "#0a3e2e",
@@ -35,5 +38,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp"), require("daisyui")],
 };

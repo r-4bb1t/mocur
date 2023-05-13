@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Header() {
   return (
     <header className="h-32 w-full fixed flex px-16 items-center justify-between">
