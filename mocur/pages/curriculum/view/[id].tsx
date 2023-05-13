@@ -9,18 +9,30 @@ import TreeView from "@/components/View/TreeView";
 const facNodes = (nodes: GetTreeResponseType["nodes"]) => {
   return nodes.map((node) => {
     return {
-      id: node.index,
+      id: `${node.index}`,
       position: {
         x: node.loc_x,
         y: node.loc_y,
       },
       type: "custom",
       data: {
-        index: node.index,
+        index: `${node.index}`,
         title: node.title,
-        checklists: node.checklist,
+        checklist: node.checklist,
       } as NodeDataType,
     };
+  });
+};
+
+const facEdges = (edges: GetTreeResponseType["edges"]) => {
+  return edges.map((edge) => {
+    return {
+      id: `${edge.id}`,
+      source: `${edge.source}`,
+      target: `${edge.target}`,
+      animated: true,
+      style: { stroke: "#000" },
+    } as EdgeType;
   });
 };
 
@@ -58,9 +70,12 @@ export default function View() {
         {data && (
           <div className="absolute inset-0 pt-32 flex overflow-hidden">
             <Sidebar edit={false} data={data} />
+            <TreeView
+              nodes={facNodes(data.nodes)}
+              edges={facEdges(data.edges)}
+            />
           </div>
         )}
-        {data && <TreeView nodes={facNodes(data.nodes)} edges={data.edges} />}
       </main>
     </Layout>
   );

@@ -1,8 +1,6 @@
 import ReactFlow, {
   ReactFlowProvider,
   useReactFlow,
-  useNodesState,
-  useEdgesState,
   addEdge,
   Connection,
   OnConnectStartParams,
@@ -99,9 +97,7 @@ function Flow() {
             progress_individual: false,
             loc_x: event.clientX - left - 75,
             loc_y: event.clientY - top,
-            size_x: 0,
-            size_y: 0,
-            checklists: [],
+            checklist: [],
             is_main_branch: true,
           },
         };

@@ -10,6 +10,10 @@
   }
 }
 
+:root {
+  --p: 165 88% 30%;
+}
+
 * {
   font-family: "Pretendard Variable", Pretendard, -apple-system,
     BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",

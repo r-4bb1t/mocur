@@ -66,7 +66,7 @@ const TreeContextProvider = ({ children }: { children: ReactNode }) => {
         loc_x: 20,
         loc_y: 40,
         is_main_branch: true,
-        checklists: [
+        checklist: [
           {
             content: "책 한 권 읽기",
             id: "asdf",

@@ -9,7 +9,7 @@ function CustomNode({ data }: { data: NodeDataType }) {
   return (
     <div
       className={cc([
-        "bg-white shadow-shadow flex flex-col gap-2 rounded z-50 w-[20rem]",
+        "bg-white shadow-shadow flex flex-col gap-2 rounded z-50 w-[20rem] px-6 py-4 !visible",
         /*  data.is_main_branch && "px-6 py-4",
         !data.is_main_branch && "px-4 py-2 bg-opacity-80", */
       ])}
@@ -17,7 +17,7 @@ function CustomNode({ data }: { data: NodeDataType }) {
     >
       <div
         className={cc([
-          "font-bold",
+          "font-bold text-2xl",
           /*   data.is_main_branch && "text-2xl",
           !data.is_main_branch && "text-lg", */
         ])}
@@ -26,18 +26,18 @@ function CustomNode({ data }: { data: NodeDataType }) {
       </div>
       <div
         className={cc([
-          "line-clamp-3",
+          "line-clamp-3 text-base",
           /*    data.is_main_branch && "text-base",
           !data.is_main_branch && "text-sm", */
         ])}
         dangerouslySetInnerHTML={{ __html: data.content }}
       ></div>
       <ul>
-        {data.checklists.map((checklist, i) => (
+        {data.checklist.map((checklist, i) => (
           <li
             key={i}
             className={cc([
-              "flex",
+              "flex text-lg",
               /*  data.is_main_branch && "text-lg",
               !data.is_main_branch && "text-base", */
             ])}

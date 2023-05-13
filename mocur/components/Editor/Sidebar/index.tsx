@@ -10,6 +10,8 @@ import {
 import { Rating } from "./Rating";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { BeatLoader } from "react-spinners";
+import { Edge, Node } from "reactflow";
 
 const Item = ({ item, deg }: { item: ListItem; deg: number }) => {
   const { lists } = useTreeContext();
@@ -40,6 +42,39 @@ const Item = ({ item, deg }: { item: ListItem; deg: number }) => {
   );
 };
 
+const setReq = (
+  title: string,
+  description: string,
+  isPublic: boolean,
+  rating: number,
+  nodes: Node<any, string | undefined>[],
+  edges: Edge<any>[]
+) => {
+  return {
+    data: {
+      title: title,
+      description: description,
+      owner: "userId",
+      public: isPublic,
+      rating: 1, // integer: 1~10
+      nodes: nodes.map((node) => {
+        return {
+          index: parseInt(node.id), // 1부터 순차적으로 증가
+          title: node.data.title,
+          content: node.data.content, // markdown
+          progress_individual: false,
+          loc_x: node.position.x,
+          loc_y: node.position.y,
+          checklist: node.data.checklist,
+        };
+      }),
+      edges: edges.map((edge) => {
+        return { id: edge.id, source: edge.source, target: edge.target };
+      }),
+    },
+  };
+};
+
 export default function Sidebar({
   edit = true,
   data,
@@ -47,10 +82,32 @@ export default function Sidebar({
   edit?: boolean;
   data?: GetTreeResponseType;
 }) {
-  const { lists } = useTreeContext();
+  const { nodes, edges, lists } = useTreeContext();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [isPublic, setIsPublic] = useState(true);
   const [rating, setRating] = useState(5);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const res = (
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_API_HOST}/trees`,
+          setReq(title, description, isPublic, rating, nodes, edges),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+      ).data;
+    } catch (e) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="w-80 bg-white h-full rounded-tr-lg shadow-shadow py-8 px-4 shrink-0 z-10">
@@ -103,10 +160,24 @@ export default function Sidebar({
           <Rating rating={rating} setRating={setRating} />
         </div>
       )}
-
       {edit && (
-        <button className="py-2 px-3 text-center rounded hov bg-main text-white gap-2 font-bold w-full">
-          커리큘럼 등록하기
+        <div className="flex items-center justify-end gap-2 mb-4">
+          {isPublic ? "공개" : "비공개"}
+          <input
+            type="checkbox"
+            className="toggle toggle-md toggle-primary"
+            defaultChecked={isPublic}
+            onChange={() => setIsPublic((s) => !s)}
+          />
+        </div>
+      )}
+      {edit && (
+        <button
+          className="py-2 px-3 text-center rounded hov bg-main text-white gap-2 font-bold w-full disabled:bg-black-500"
+          onClick={() => handleSubmit()}
+          disabled={loading}
+        >
+          {loading ? <BeatLoader color="white" /> : "커리큘럼 등록하기"}
         </button>
       )}
     </div>

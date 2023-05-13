@@ -2,7 +2,7 @@ interface NodeDataType {
   index: string;
   title: string;
   content: string;
-  checklists: ChecklistType[];
+  checklist: ChecklistType[];
 }
 
 interface FlowNodeType {
@@ -25,4 +25,12 @@ interface ListItem {
   children: string[];
   title: string;
   parents: string[];
+}
+
+interface EdgeType {
+  id: string;
+  source: string;
+  target: string;
+  animated: boolean;
+  style: CSSProperties;
 }

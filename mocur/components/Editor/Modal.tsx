@@ -76,7 +76,7 @@ export default function Drawer() {
       </div>
       <div className="h-full overflow-y-auto">
         <ul>
-          {data?.checklists.map((checklist, i) => (
+          {data?.checklist.map((checklist, i) => (
             <li
               key={checklist.id}
               className={cc([
@@ -99,7 +99,7 @@ export default function Drawer() {
                     if (!data) return null;
                     return {
                       ...data,
-                      checklists: data.checklists.map((item) => {
+                      checklist: data.checklist.map((item) => {
                         if (item.id === checklist.id)
                           return { ...item, content: e.target.value };
                         return item;
@@ -114,7 +114,7 @@ export default function Drawer() {
                     if (!data) return null;
                     return {
                       ...data,
-                      checklists: data.checklists.filter(
+                      checklist: data.checklist.filter(
                         (item) => item.id !== checklist.id
                       ),
                     };
@@ -137,8 +137,8 @@ export default function Drawer() {
                 if (!data) return null;
                 return {
                   ...data,
-                  checklists: [
-                    ...(data?.checklists || []),
+                  checklist: [
+                    ...(data?.checklist || []),
                     { content: "sample", id: nanoid() },
                   ],
                 };
