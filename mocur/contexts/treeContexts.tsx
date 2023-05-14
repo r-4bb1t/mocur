@@ -28,6 +28,7 @@ interface TreeContextProps {
   onEdgesChange: OnEdgesChange;
   lists: ListItem[];
   setLists: Dispatch<SetStateAction<ListItem[]>>;
+  reset: () => void;
 }
 
 export const TreeContext = createContext<TreeContextProps>({
@@ -41,6 +42,7 @@ export const TreeContext = createContext<TreeContextProps>({
   onEdgesChange: () => {},
   lists: [],
   setLists: () => {},
+  reset: () => {},
 });
 
 const TreeContextProvider = ({ children }: { children: ReactNode }) => {
@@ -60,8 +62,8 @@ const TreeContextProvider = ({ children }: { children: ReactNode }) => {
       position: { x: 200, y: 80 },
       data: {
         index: "1",
-        title: "1일차",
-        content: "순조로운 공부 첫 날!",
+        title: "첫 발걸음",
+        content: "어떤 커리큘럼을 만들어 볼까요?",
         progress_individual: false,
         loc_x: 20,
         loc_y: 40,
@@ -81,6 +83,36 @@ const TreeContextProvider = ({ children }: { children: ReactNode }) => {
     },
   ]);
 
+  const reset = () => {
+    setNodes([
+      {
+        id: "1",
+        position: { x: 200, y: 80 },
+        data: {
+          index: "1",
+          title: "첫 발걸음",
+          content: "어떤 커리큘럼을 만들어 볼까요?",
+          progress_individual: false,
+          loc_x: 20,
+          loc_y: 40,
+          is_main_branch: true,
+          checklist: [
+            {
+              content: "책 한 권 읽기",
+              id: "asdf",
+            },
+            {
+              content: "물 많이 마시기",
+              id: "qwere",
+            },
+          ],
+        },
+        type: "custom",
+      },
+    ]);
+    setEdges([]);
+  };
+
   return (
     <TreeContext.Provider
       value={{
@@ -94,6 +126,7 @@ const TreeContextProvider = ({ children }: { children: ReactNode }) => {
         onEdgesChange,
         lists,
         setLists,
+        reset,
       }}
     >
       {children}

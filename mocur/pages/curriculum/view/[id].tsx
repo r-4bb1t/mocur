@@ -19,6 +19,7 @@ const facNodes = (nodes: GetTreeResponseType["nodes"]) => {
       data: {
         index: `${node.index}`,
         title: node.title,
+        content: node.content,
         checklist: node.checklist,
       } as NodeDataType,
     };

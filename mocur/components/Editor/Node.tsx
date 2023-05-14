@@ -40,11 +40,7 @@ function CustomNode({ data }: { data: NodeDataType }) {
               !data.is_main_branch && "text-base", */
             ])}
           >
-            <input
-              type="checkbox"
-              checked={false}
-              className="checkbox checkbox-sm mr-2"
-            />
+            <input type="checkbox" className="checkbox checkbox-sm mr-2" />
             {checklist.content}
           </li>
         ))}
@@ -53,13 +49,13 @@ function CustomNode({ data }: { data: NodeDataType }) {
         type="target"
         position={Position.Top}
         id="top"
-        className="!w-3 !h-3 hover:bg-opacity-80 flex items-center justify-center rounded-full !bg-white !border-[1px] !border-black-200 shadow-shadow"
+        className="!w-4 !h-4 hover:bg-opacity-80 flex items-center justify-center rounded-full !bg-white !border-[1px] !border-black-200 shadow-shadow"
       />
       <Handle
         type="source"
         position={Position.Bottom}
         id="bottom"
-        className="!w-3 !h-3 hover:bg-opacity-80 flex items-center justify-center rounded-full !bg-white !border-[1px] !border-black-200 shadow-shadow"
+        className="!w-4 !h-4 hover:bg-opacity-80 flex items-center justify-center rounded-full !bg-white !border-[1px] !border-black-200 shadow-shadow"
       />
     </div>
   );

@@ -7,7 +7,13 @@ import ReactFlow, {
 } from "reactflow";
 import CustomNode from "./Node";
 import "reactflow/dist/style.css";
-import { Dispatch, SetStateAction, useCallback, useRef } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import { useTreeContext } from "@/contexts/treeContexts";
 import { getSampleContents } from "@/utils/getSampleContents";
 import { nanoid } from "nanoid";
@@ -20,7 +26,6 @@ let id = 100;
 const getId = () => `${id++}`;
 
 function Flow() {
-  //const reactFlowInstance = useReactFlow();
   const {
     nodes,
     setNodes,
@@ -29,42 +34,25 @@ function Flow() {
     setEdges,
     onEdgesChange,
     setLists,
+    reset,
   } = useTreeContext();
-  const onConnect = useCallback((params: Connection) => {
-    setEdges((eds) => {
-      return addEdge(
-        {
-          ...params,
-          id: nanoid(),
-          animated: true,
-          style: { stroke: "#000" },
-        },
-        eds
-      );
-    });
-    console.log(params.target);
-    /* if (params.source && params.target)
-      setLists((list) =>
-        list.map((item) => {
-          if (item.index === params.source)
-            return {
-              ...item,
-              children: [
-                ...item.children,
-                {
-                  title:
-                    nodes.filter((node) => node.id === params.target)[0]?.data
-                      .title || "",
-                  index: params.target!,
-                  children: [] as ListItem[],
-                },
-              ],
-            };
-          return item;
-        })
-      ); */
-  }, []);
   const { project } = useReactFlow();
+
+  const onConnect = useCallback(
+    (params: Connection) =>
+      setEdges((eds) =>
+        addEdge(
+          {
+            ...params,
+            id: nanoid(),
+            animated: true,
+            style: { stroke: "#000" },
+          },
+          eds
+        )
+      ),
+    []
+  );
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
   const connectingNodeId = useRef<string | null>(null);
 
@@ -104,7 +92,7 @@ function Flow() {
           },
         };
 
-        setLists((list) => [
+        /* setLists((list) => [
           ...list.map((item) => {
             if (item.index === connectingNodeId.current)
               return {
@@ -119,7 +107,7 @@ function Flow() {
             children: [] as string[],
             parents: [connectingNodeId.current!],
           },
-        ]);
+        ]); */
 
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) =>
@@ -135,18 +123,13 @@ function Flow() {
           )
         );
       }
-      console.log(
-        JSON.stringify({
-          id,
-          source: connectingNodeId.current!,
-          target: id,
-          animated: true,
-          style: { stroke: "#000" },
-        })
-      );
     },
     [project]
   );
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   return (
     <div className="wrapper w-full" ref={reactFlowWrapper}>

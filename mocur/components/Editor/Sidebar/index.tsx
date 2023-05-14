@@ -72,7 +72,7 @@ const setReq = (
         };
       }),
       edges: edges.map((edge) => {
-        return { id: edge.id, source: edge.source, target: edge.target };
+        return { source: edge.source, target: edge.target };
       }),
     },
   };
@@ -93,6 +93,7 @@ export default function Sidebar({
   const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
+  const router = useRouter();
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -116,7 +117,7 @@ export default function Sidebar({
           }
         )
       ).data;
-      console.log(res);
+      router.push(`/curriculum/view/${res.id}`);
     } catch (e) {
     } finally {
       setLoading(false);
@@ -137,7 +138,7 @@ export default function Sidebar({
       {!edit && (
         <>
           <div className="flex flex-col gap-2 px-3">
-            <div className="text-sm">by @{data?.owner}</div>
+            <div className="text-sm">by {data?.owner}</div>
             <div className="flex items-center gap-0.5">
               <div className="font-bold text-sm">
                 난이도 {data?.rating} / 10

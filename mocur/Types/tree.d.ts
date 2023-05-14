@@ -9,6 +9,7 @@ interface GetTreeResponseType {
   nodes?: {
     index: string;
     title: string;
+    content: string;
     checklist: ChecklistType[];
     check_individual: boolean; // 개인용 체크인지 팀용(공통) 체크인지
     loc_x: number;

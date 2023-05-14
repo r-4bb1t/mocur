@@ -5,8 +5,10 @@ export default function NodeViewer({ data }: { data: NodeDataType }) {
   const viewerRef = useRef<Viewer>(null);
 
   useEffect(() => {
+    if (!viewerRef.current) return;
     viewerRef.current!.getInstance().setMarkdown(data.content);
-  }, [data]);
+    console.log(data);
+  }, [data, viewerRef.current]);
 
   return <Viewer ref={viewerRef} />;
 }
