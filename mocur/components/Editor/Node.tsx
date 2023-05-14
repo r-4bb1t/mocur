@@ -1,6 +1,6 @@
 import { useTreeContext } from "@/contexts/treeContexts";
 import cc from "classcat";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Handle, Position } from "reactflow";
 import dynamic from "next/dynamic";
 
@@ -10,11 +10,13 @@ const NodeViewer = dynamic(() => import("./NodeViewer"), {
 
 function CustomNode({ data }: { data: NodeDataType }) {
   const { setOpenedNodeIndex } = useTreeContext();
+  const [checked, setChecked] = useState(0);
 
   return (
     <div
       className={cc([
-        "bg-white shadow-shadow flex flex-col gap-2 rounded z-50 w-[30rem] px-6 py-4 !visible",
+        "bg-white shadow-shadow flex flex-col gap-2 rounded z-50 w-[30rem] px-6 py-4 !visible border-[rgba(255,255,255,0.8)] border-2",
+        checked === data.checklist.length && "bg-background",
       ])}
       onClick={() => setOpenedNodeIndex(data.index)}
     >
@@ -23,7 +25,13 @@ function CustomNode({ data }: { data: NodeDataType }) {
       <ul>
         {data.checklist.map((checklist, i) => (
           <li key={i} className={cc(["flex text-lg items-center"])}>
-            <input type="checkbox" className="checkbox checkbox-sm mr-2" />
+            <input
+              type="checkbox"
+              className="checkbox checkbox-sm mr-2 checkbox-primary"
+              onChange={(e) =>
+                setChecked((c) => c + (e.target.checked ? 1 : -1))
+              }
+            />
             {checklist.content}
           </li>
         ))}
