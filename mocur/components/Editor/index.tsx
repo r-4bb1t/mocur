@@ -92,23 +92,6 @@ function Flow() {
           },
         };
 
-        /* setLists((list) => [
-          ...list.map((item) => {
-            if (item.index === connectingNodeId.current)
-              return {
-                ...item,
-                children: [...item.children, id],
-              };
-            return item;
-          }),
-          {
-            index: id,
-            title: sampleContents.title,
-            children: [] as string[],
-            parents: [connectingNodeId.current!],
-          },
-        ]); */
-
         setNodes((nds) => nds.concat(newNode));
         setEdges((eds) =>
           addEdge(

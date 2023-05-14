@@ -15,31 +15,14 @@ function CustomNode({ data }: { data: NodeDataType }) {
     <div
       className={cc([
         "bg-white shadow-shadow flex flex-col gap-2 rounded z-50 w-[30rem] px-6 py-4 !visible",
-        /*  data.is_main_branch && "px-6 py-4",
-        !data.is_main_branch && "px-4 py-2 bg-opacity-80", */
       ])}
       onClick={() => setOpenedNodeIndex(data.index)}
     >
-      <div
-        className={cc([
-          "font-bold text-2xl",
-          /*   data.is_main_branch && "text-2xl",
-          !data.is_main_branch && "text-lg", */
-        ])}
-      >
-        {data.title}
-      </div>
+      <div className={cc(["font-bold text-2xl"])}>{data.title}</div>
       <NodeViewer data={data} />
       <ul>
         {data.checklist.map((checklist, i) => (
-          <li
-            key={i}
-            className={cc([
-              "flex text-lg items-center",
-              /*  data.is_main_branch && "text-lg",
-              !data.is_main_branch && "text-base", */
-            ])}
-          >
+          <li key={i} className={cc(["flex text-lg items-center"])}>
             <input type="checkbox" className="checkbox checkbox-sm mr-2" />
             {checklist.content}
           </li>

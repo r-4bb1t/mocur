@@ -18,11 +18,6 @@ export default function Input({
         onChange={(e) => {
           setSearch(e.target.value);
         }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            /*  router.push(`/search?q=${search}`); */
-          }
-        }}
       />
     </div>
   );

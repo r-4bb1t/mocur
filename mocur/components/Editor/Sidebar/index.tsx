@@ -163,14 +163,6 @@ export default function Sidebar({
           {data?.description}
         </div>
       )}
-      {/* <ul className="mt-2">
-        {lists.map(
-          (item) =>
-            item.parents.length === 0 && (
-              <Item key={item.index} item={item} deg={0} />
-            )
-        )}
-      </ul> */}
       {edit && (
         <div className="flex items-center justify-between py-4">
           <div className="font-bold text-lg">난이도 {rating} / 10</div>

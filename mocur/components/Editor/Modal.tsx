@@ -26,10 +26,6 @@ export default function Drawer() {
     } else setData(null);
   }, [nodes, openedNodeIndex]);
 
-  /* const getData = useCallback(async () => {
-    const res = (await axios.get(`${process.env.NEXT_PUBLIC_API_HOST}/`)).data;
-  }, []);  */
-
   return (
     <motion.div
       className="w-1/2 h-3/4 flex flex-col bg-white gap-2 p-4 rounded-lg shadow-shadow"
@@ -80,8 +76,6 @@ export default function Drawer() {
               key={checklist.id}
               className={cc([
                 "flex border-b-[1px] border-b-black-200 py-2 items-center",
-                /* data.is_main_branch && "text-lg",
-                !data.is_main_branch && "text-base", */
               ])}
             >
               <input
