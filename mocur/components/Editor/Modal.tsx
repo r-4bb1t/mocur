@@ -9,7 +9,7 @@ import { nanoid } from "nanoid";
 import { motion } from "framer-motion";
 
 export default function Drawer() {
-  const { nodes, openedNodeIndex, setNodes, setOpenedNodeIndex } =
+  const { nodes, openedNodeIndex, setNodes, setEdges, setOpenedNodeIndex } =
     useTreeContext();
   const [data, setData] = useState<NodeDataType | null>(null);
 
@@ -164,6 +164,13 @@ export default function Drawer() {
           onClick={() => {
             setNodes((nodes) =>
               nodes.filter((node) => node.id !== openedNodeIndex)
+            );
+            setEdges((edges) =>
+              edges.filter(
+                (edge) =>
+                  edge.target !== openedNodeIndex &&
+                  edge.source !== openedNodeIndex
+              )
             );
             setOpenedNodeIndex("");
           }}
