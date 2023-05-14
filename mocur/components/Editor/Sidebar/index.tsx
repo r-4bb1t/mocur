@@ -50,14 +50,14 @@ const setReq = (
   isPublic: boolean,
   rating: number,
   nodes: Node<any, string | undefined>[],
-  edges: Edge<any>[]
+  edges: Edge<any>[],
+  owner: string
 ) => {
-  const { data: session } = useSession();
   return {
     data: {
       title: title,
       description: description,
-      owner: session?.user?.email,
+      owner: owner,
       public: isPublic,
       rating: rating, // integer: 1~10
       nodes: nodes.map((node) => {
@@ -92,13 +92,23 @@ export default function Sidebar({
   const [rating, setRating] = useState(5);
   const [loading, setLoading] = useState(false);
 
+  const { data: session } = useSession();
+
   const handleSubmit = async () => {
     setLoading(true);
     try {
       const res = (
         await axios.post(
           `${process.env.NEXT_PUBLIC_API_HOST}/trees/`,
-          setReq(title, description, isPublic, rating, nodes, edges),
+          setReq(
+            title,
+            description,
+            isPublic,
+            rating,
+            nodes,
+            edges,
+            session?.user?.email ?? "1"
+          ),
           {
             headers: {
               "Content-Type": "application/json",
@@ -106,6 +116,7 @@ export default function Sidebar({
           }
         )
       ).data;
+      console.log(res);
     } catch (e) {
     } finally {
       setLoading(false);
@@ -125,10 +136,10 @@ export default function Sidebar({
       )}
       {!edit && (
         <>
-          <div className="flex items-center justify-between px-3">
+          <div className="flex flex-col gap-2 px-3">
             <div className="text-sm">by @{data?.owner}</div>
             <div className="flex items-center gap-0.5">
-              <div className="font-bold text-xs">
+              <div className="font-bold text-sm">
                 난이도 {data?.rating} / 10
               </div>
               <Rating
@@ -147,7 +158,7 @@ export default function Sidebar({
           onChange={(e) => setDescription(e.target.value)}
         />
       ) : (
-        <div className="mt-2 text-sm h-full w-full input-sm">
+        <div className="mt-2 text-sm h-full w-full input-sm leading-6">
           {data?.description}
         </div>
       )}
@@ -182,7 +193,11 @@ export default function Sidebar({
           onClick={() => handleSubmit()}
           disabled={loading || title.length === 0 || description.length === 0}
         >
-          {loading ? <BeatLoader color="white" /> : "커리큘럼 등록하기"}
+          {loading ? (
+            <BeatLoader color="white" size={"8px"} />
+          ) : (
+            "커리큘럼 등록하기"
+          )}
         </button>
       )}
       {!edit && (

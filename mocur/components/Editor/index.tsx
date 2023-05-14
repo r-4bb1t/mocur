@@ -10,6 +10,7 @@ import "reactflow/dist/style.css";
 import { Dispatch, SetStateAction, useCallback, useRef } from "react";
 import { useTreeContext } from "@/contexts/treeContexts";
 import { getSampleContents } from "@/utils/getSampleContents";
+import { nanoid } from "nanoid";
 
 const nodeTypes = {
   custom: CustomNode,
@@ -30,16 +31,17 @@ function Flow() {
     setLists,
   } = useTreeContext();
   const onConnect = useCallback((params: Connection) => {
-    setEdges((eds) =>
-      addEdge(
+    setEdges((eds) => {
+      return addEdge(
         {
           ...params,
+          id: nanoid(),
           animated: true,
           style: { stroke: "#000" },
         },
         eds
-      )
-    );
+      );
+    });
     console.log(params.target);
     /* if (params.source && params.target)
       setLists((list) =>
@@ -97,7 +99,7 @@ function Flow() {
             progress_individual: false,
             loc_x: event.clientX - left - 75,
             loc_y: event.clientY - top,
-            checklist: [],
+            checklist: sampleContents.checklist,
             is_main_branch: true,
           },
         };

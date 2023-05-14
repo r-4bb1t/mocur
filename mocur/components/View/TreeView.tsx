@@ -29,6 +29,7 @@ const Flow = ({
         nodeTypes={nodeTypes}
         fitView
         className="!overflow-visible"
+        onlyRenderVisibleElements={false}
       />
     </div>
   );

@@ -4,15 +4,7 @@ import Layout from "@/components/Layout";
 import Link from "next/link";
 import { useState } from "react";
 
-const chipData = [
-  "Web",
-  "Frontend",
-  "Backend",
-  "React",
-  "Django",
-  "AI",
-  "Javascript",
-];
+const chipData = ["웹", "프론트엔드", "백엔드", "집안일", "리액트", "운영체제"];
 
 export default function Home() {
   const [search, setSearch] = useState<string>("");
