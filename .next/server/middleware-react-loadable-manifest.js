@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST={"..\\components\\Editor\\Node.tsx -> ./NodeViewer":{"id":"..\\components\\Editor\\Node.tsx -> ./NodeViewer","files":["static/chunks/components_Editor_NodeViewer_tsx.js"]},"curriculum\\editor.tsx -> @/components/Editor/Modal":{"id":"curriculum\\editor.tsx -> @/components/Editor/Modal","files":["static/chunks/components_Editor_Modal_tsx.js"]}}
